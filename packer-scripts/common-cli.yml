@@ -1,0 +1,43 @@
+---
+- hosts: all
+  remote_user: root
+  tasks:
+  - name: Install dependencies
+    apt:
+      name: "{{ packages }}"
+    vars:
+      packages:
+      - tmux
+      - vim
+      - silversearcher-ag
+      - zsh
+      - golang
+    become: "yes"
+  - name: Get dotfiles
+    git:
+      repo: 'https://github.com/fstaffa/dotfiles.git'
+      dest: '~/data/dotfiles'
+  - name: Get prezto configuration
+    git:
+      repo: 'https://github.com/fstaffa/prezto.git'
+      dest: '~/.zprezto'
+  - name: Install tpm
+    git:
+        repo: 'https://github.com/tmux-plugins/tpm.git'
+        dest: '~/.tmux/plugins/tpm'
+  - name: Link tmux configuration
+    file:
+      src: '~/data/dotfiles/tmux.conf'
+      dest: '~/.tmux.conf'
+      state: link
+  - name: Install tpm plugins
+    shell: '~/.tmux/plugins/tpm/scripts/install_plugins.sh'
+  - name: Get fzf
+    git:
+      repo: https://github.com/junegunn/fzf.git
+      depth: 1
+      dest: '~/.fzf'
+  - name: Install fzf
+    shell: '~/.fzf/install'
+  - name: Set root shell to zsh
+    shell: 'chsh -s $(which zsh)'
