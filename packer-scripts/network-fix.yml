@@ -1,0 +1,10 @@
+- hosts: all
+  remote_user: root
+  tasks:
+    - name: Add eth0 default start
+      lineinfile:
+        dest: /etc/network/interfaces
+        line: "{{ item }}"
+      with_items:
+        - "auto eth0"
+        - "iface eth0 inet dhcp"

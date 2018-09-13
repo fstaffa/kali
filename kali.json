@@ -2,29 +2,24 @@
   "variables": {
     "username": "",
     "password": "",
-    "iso_file":
-      "http://cdimage.kali.org/kali-2018.2/kali-linux-2018.2-amd64.iso",
-    "iso_checksum":
-      "56f677e2edfb2efcd0b08662ddde824e254c3d53567ebbbcdbbf5c03efd9bc0f"
+    "iso_file": "http://cdimage.kali.org/kali-2018.3/kali-linux-2018.3-amd64.iso",
+    "iso_checksum": "6ce4071c667082bc841789e5d812dbfd424758b333d78ca5de6eceb7c43f8dd0"
   },
   "provisioners": [
     {
       "type": "shell",
-      "execute_command":
-        "echo 'vagrant' | {{.Vars}} sudo -S -E bash '{{.Path}}'",
+      "execute_command": "echo 'vagrant' | {{.Vars}} sudo -S -E bash '{{.Path}}'",
       "script": "packer-scripts/virtualbox-guest-additions.sh",
       "only": ["virtualbox-iso"]
     },
     {
       "type": "shell",
-      "execute_command":
-        "echo 'vagrant' | {{.Vars}} sudo -S -E bash '{{.Path}}'",
+      "execute_command": "echo 'vagrant' | {{.Vars}} sudo -S -E bash '{{.Path}}'",
       "script": "packer-scripts/ansible.sh"
     },
     {
       "type": "shell",
-      "execute_command":
-        "echo 'vagrant' | {{.Vars}} sudo -S -E bash '{{.Path}}'",
+      "execute_command": "echo 'vagrant' | {{.Vars}} sudo -S -E bash '{{.Path}}'",
       "script": "packer-scripts/setup.sh"
     },
     {
@@ -36,9 +31,12 @@
       "playbook_file": "packer-scripts/common-cli.yml"
     },
     {
+      "type": "ansible-local",
+      "playbook_file": "packer-scripts/network-fix.yml"
+    },
+    {
       "type": "shell",
-      "execute_command":
-        "echo 'vagrant' | {{.Vars}} sudo -S -E bash '{{.Path}}'",
+      "execute_command": "echo 'vagrant' | {{.Vars}} sudo -S -E bash '{{.Path}}'",
       "script": "packer-scripts/cleanup.sh"
     }
   ],
