@@ -1,7 +1,7 @@
 # packer-kali
 
 Copied from: https://github.com/chrisanthropic/packer-kali
-A Kali 1.0.9a build for Packer
+A Kali 2018-3 build for Packer
 
 ## Requirements
 
@@ -11,22 +11,18 @@ A Kali 1.0.9a build for Packer
 
 ## About the Boxes
 
-We start with a Kali 1.0.9a x64 base .iso and run a few scripts on it before creating a vagrant compatible .box for Virtualbox and/or VMware.
+#### Kali linux rolling
 
-Final box available on Vagrantcloud at: https://vagrantcloud.com/cmad/
+#### Metasploitable 2
 
-#### Kali linux 1.0.9a
+Download [Metasploitable 2](http://sourceforge.net/projects/metasploitable/files/Metasploitable2/metasploitable-linux-2.0.0.zip/download) from Sourceforge. Unpack the file `Metasploiable2.vmdk` into the directory `packer/metasploitable/`.
 
-- apt-get update/upgrade on November 13 2014.
-- Installs virtualbox guest additions / vmware-tools.
-- apt-get installation of 'chef' for provisioning.
-- Root password: `toor`
-- User `vagrant` is created with password `vagrant` and added to user group `admin`.
-- Enables passwordless sudo for user group `admin`.
-- Authorized keys for `vagrant` user are stored in the `~/.ssh` directory.
-- Enables rpcbind, nfs-common and ssh services at boot.
-- Modifies /etc/issue for vagrant/vmware OS detection.
-- eth1 assigned a static ip of 172.16.189.5
+Build using [packer](https://packer.io):
+
+    $(cd packer/kali; packer build kali-2-amd64.json)
+    $(cd packer/metasploitable; packer build metasploitable2.json)
+    $(cd packer/debian-lenny; packer build debian-lenny-5.0.10-amd64-netinst.json)
+    $(cd packer/damn-vulnerable-node-application; packer build dvna-ubuntu-15.10-amd64.json)
 
 ## Use
 

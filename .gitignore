@@ -1,3 +1,7 @@
 .vagrant/
 builds/
 packer_cache/
+
+*.vmdk
+*.box
+*.ovf
