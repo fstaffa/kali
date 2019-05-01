@@ -2,8 +2,8 @@
   "variables": {
     "username": "",
     "password": "",
-    "iso_file": "http://cdimage.kali.org/kali-2018.3/kali-linux-2018.3-amd64.iso",
-    "iso_checksum": "6ce4071c667082bc841789e5d812dbfd424758b333d78ca5de6eceb7c43f8dd0"
+    "iso_file": "https://cdimage.kali.org/kali-2019.1a/kali-linux-2019.1a-amd64.iso",
+    "iso_checksum": "2d23cf0b35285ba68111154f169efa87fbb9ff618e68ea4cf6bd1023215d063e"
   },
   "provisioners": [
     {

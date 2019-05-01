@@ -4,7 +4,7 @@
 Vagrant.configure("2") do |config|
   # The name of the box to use. For our use case, this is the name specified as part
   # of the `vagrant box add` command.
-  config.vm.box = "kalirolling-2018-3"
+  config.vm.box = "kalirolling-2019-1"
 
   config.ssh.username = 'root'
   config.ssh.password = 'toor'
